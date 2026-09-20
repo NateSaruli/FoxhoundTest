@@ -92,6 +92,7 @@
 		/area/specialty/stowaway_clubhouse,
 		/area/specialty/stowaway_clubhouse/upper,
 		/area/specialty/expie_clubhouse,
+		/area/specialty/expie_clubhouse/archive,
 		/area/offworld/orbital/exterior/engine_core_port,
 		/area/offworld/orbital/exterior/engine_core_starboard,
 		/area/offworld/orbital/station/storage_engine_core,
@@ -106,6 +107,8 @@
 		/area/offworld/orbital/station/south_engine_access_east,
 		/area/muriki/lowerelev,
 		/area/muriki/lowerevac,
+		/area/offworld/orbital/phoronics/burn_chamber,
+		/area/rnd/xenobiology/lost,
 		)
 
 	var/list/forced_hallway = list(
@@ -230,6 +233,7 @@
 		/area/medical/medbay,
 		/area/muriki/crew/kitchenfreezer,
 		/area/security/tactical,
+		/area/security/tactical/red,
 		/area/security/armoury,
 		/area/muriki/cybstorage,
 		/area/muriki/arriveelev,
@@ -325,6 +329,7 @@
 		// Armory
 		/area/security/armoury,
 		/area/security/tactical,
+		/area/security/tactical/red,
 		/area/security/nuke_storage,
 		/area/security/brig,
 		/area/security/surgery,
@@ -461,7 +466,7 @@
 		var/area/A = get_area(P)
 		if(!A)
 			continue
-		if(A.type == /area/maintenance/incinerator || A.type == /area/rnd/research/phoronics/burn) // Exempt
+		if(A.type == /area/maintenance/incinerator || A.type == /area/rnd/research/phoronics/burn || A.type == /area/offworld/orbital/phoronics/burn_chamber) // Exempt
 			continue
 		var/turf/T = get_turf(P)
 		if(!istype(A,/area/shuttle) && iswall(T))
@@ -672,6 +677,14 @@
 			TEST_NOTICE(src, "Telebeacon already in use [beacon.tele_name]. Located at [T.x].[T.y].[T.z] : [A]")
 			continue
 		used_tags += beacon.tele_name
+
+	for(var/obj/item/perfect_tele_beacon/stationary/beacon in world)
+		var/turf/T = get_turf(beacon)
+		var/area/A = get_area(beacon)
+		if(beacon.tele_network == null)
+			failed = TRUE
+			TEST_NOTICE(src, "Telebeacon has no assigned tele_network. Located at [T.x].[T.y].[T.z] : [A]")
+			continue
 
 	if(failed)
 		TEST_FAIL("One or more tele_beacon objects are incorrectly setup or are duplicates")

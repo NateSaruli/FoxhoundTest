@@ -290,7 +290,7 @@
 	src.modules += new /obj/item/melee/robotic/jaws/small(src)
 	src.modules += new /obj/item/gripper/scene(src)
 	src.modules += new /obj/item/robo_dice(src)
-	src.modules += new /obj/item/tape_roll/cyborg(src) // Outpost 21 edit - Everyone gets a tape dispenser
+	src.modules += new /obj/item/tape_roll/cyborg(src)
 
 /obj/item/robot_module/robot/proc/adjust_gps(obj/item/gps/robot/robot_gps)
 	return
@@ -676,7 +676,7 @@
 	L.lit = 1
 	src.modules += L
 
-	src.modules += new /obj/item/material/kitchen/rollingpin/cyborg(src) // Outpost 21 edit(port) - Service borg rolling pin
+	src.modules += new /obj/item/material/kitchen/rollingpin/cyborg(src)
 	src.modules += new /obj/item/tray/robotray(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/service(src)
 	var/obj/item/reagent_containers/food/drinks/bottle/small/beer/PB = new /obj/item/reagent_containers/food/drinks/bottle/small/beer(src)
@@ -725,7 +725,7 @@
 	L.lit = 1
 	src.modules += L
 
-	src.modules += new /obj/item/material/kitchen/rollingpin/cyborg(src) // Outpost 21 edit(port) - Service borg rolling pin
+	src.modules += new /obj/item/material/kitchen/rollingpin/cyborg(src)
 	src.modules += new /obj/item/tray/robotray(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/service(src)
 
