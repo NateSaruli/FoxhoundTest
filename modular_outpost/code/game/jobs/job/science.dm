@@ -1,16 +1,27 @@
+// RD is disabled
+/datum/job/rd
+	faction = FACTION_NONE
+	assignable = FALSE
+	requestable = FALSE
+	total_positions = 0
+	spawn_positions = 0
+
 /datum/job/rd/New()
 	. = ..()
-	access -= list(ACCESS_ROBOTICS,ACCESS_AI_UPLOAD)
-	access |= list(ACCESS_MAINT_TUNNELS, ACCESS_CHANGE_IDS)
-	minimal_access -= list(ACCESS_ROBOTICS,ACCESS_AI_UPLOAD)
-	minimal_access |= list(ACCESS_MAINT_TUNNELS, ACCESS_CHANGE_IDS)
+	access = list()
+	minimal_access = list()
 
 
-/datum/job/scientist/New()
-	. = ..()
-	access -= list(ACCESS_ROBOTICS, ACCESS_XENOBOTANY)
-	alt_titles -= list(JOB_ALT_CIRCUIT_DESIGNER, JOB_ALT_CIRCUIT_PROGRAMMER, JOB_ALT_PHORON_RESEARCHER, JOB_ALT_GAS_PHYSICIST)
-	alt_titles[JOB_ALT_TELEPORT_OPERATOR] = /datum/alt_title/teleport_operation
+// Scientist is command
+/datum/job/scientist
+	supervisors = "command staff"
+	selection_color = "#1D1D4F"
+	departments = list(DEPARTMENT_COMMAND)
+	department_accounts = list(DEPARTMENT_COMMAND)
+	access = list(ACCESS_RESEARCH, ACCESS_HEADS, ACCESS_KEYCARD_AUTH, ACCESS_RC_ANNOUNCE)
+	minimal_access = list(ACCESS_RESEARCH, ACCESS_HEADS, ACCESS_KEYCARD_AUTH, ACCESS_RC_ANNOUNCE)
+	job_description = "A " + JOB_SCIENTIST + " is a researcher working in the Command department, with general knowledge of the scientific process, as well as the principles and requirements of Research and Development. Often assists with command paperwork."
+	alt_titles = list(JOB_ALT_RESEARCHER = /datum/alt_title/researcher, JOB_ALT_LAB_ASSISTANT = /datum/alt_title/lab_assistant, JOB_ALT_TELEPORT_OPERATOR = /datum/alt_title/teleport_operation)
 
 
 // Massive edit, so just redefined entirely to be engineering now
@@ -59,9 +70,23 @@
 	title_outfit = /datum/decl/hierarchy/outfit/job/engineering/atmos/phoronics
 
 
-// Outfits
-/datum/decl/hierarchy/outfit/job/engineering/atmos/phoronics
-	name = OUTFIT_JOB_NAME(JOB_SCIENTIST)
-	id_type = /obj/item/card/id/science/phoronics
-	suit = /obj/item/clothing/suit/storage/toggle/labcoat/science
-	l_pocket = /obj/item/experi_scanner
+
+// Moving to cargo
+/datum/job/xenobiologist
+	departments = list(DEPARTMENT_CARGO)
+	pto_type = PTO_CARGO
+	supervisors = "the " + JOB_QUARTERMASTER
+	selection_color = "#7a4f33"
+	access = list(ACCESS_MAINT_TUNNELS, ACCESS_MAILSORTING, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MINING, ACCESS_MINING_STATION, ACCESS_XENOBIOLOGY)
+	minimal_access = list(ACCESS_MAINT_TUNNELS, ACCESS_CARGO, ACCESS_CARGO_BOT, ACCESS_MAILSORTING, ACCESS_XENOBIOLOGY)
+	banned_job_species = list(FBP_DIGITAL)
+	mail_color = COMMS_COLOR_SUPPLY
+
+/datum/job/xenobiologist/New()
+	. = ..()
+	alt_titles |= list(
+		JOB_ALT_XENOHUSBANDRY = /datum/alt_title/xenohusbandry
+	)
+
+/datum/alt_title/xenohusbandry
+	title = JOB_ALT_XENOHUSBANDRY

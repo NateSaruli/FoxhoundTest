@@ -28,6 +28,7 @@ SUBSYSTEM_DEF(job)
 /datum/controller/subsystem/job/Initialize()
 	setup_departments()
 	setup_occupations()
+	fill_holidays() // Fills holidays, for special mail/roles/other funny things. I don't like it here, but I kind of ran out of choices.
 	//CHOMPadd begin
 	if(CONFIG_GET(number/job_camp_time_limit))
 		load_camp_lists()
@@ -1037,7 +1038,7 @@ SUBSYSTEM_DEF(job)
 		.["vorgans"] = vorgans
 		.["itemtf"] = item_to_be
 	// Outpost 21 edit begin - Stowaway cancels standard spawns
-	if(rank == JOB_STOWAWAY)
+	if(IS_OUTPOST_MAINT_JOB(rank))
 		var/list/safespawns = list();
 		var/list/spawnlist = list();
 		for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)

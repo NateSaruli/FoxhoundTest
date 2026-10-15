@@ -481,13 +481,17 @@
 	src.modules += new /obj/item/floor_painter(src)
 	src.modules += new /obj/item/rms(src)
 	src.modules += new /obj/item/inflatable_dispenser/robot(src)
-	src.emag += new /obj/item/melee/robotic/baton/arm(src)
 	src.modules += new /obj/item/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/dogborg/stasis_clamp(src)
 	src.modules += new /obj/item/storage/pouch/eng_parts/borg(src)
 	src.modules += new /obj/item/holosign_creator/combifan(src) //CHOMPAdd
 	src.modules += new /obj/item/tool/crowbar/brace_jack(src) // Outpost 21 edit - Doorbraces
+	src.modules += new /obj/item/surgical/hemostat/cyborg(src) //Synth repair // Outpost 21 edit - Robotics moved to engineering
+	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src) //NIF repair // Outpost 21 edit - Robotics moved to engineering
+	src.modules += new /obj/item/surgical/circular_saw/cyborg(src) // Synth limb replacement // Outpost 21 edit - Robotics moved to engineering
+
+	src.emag += new /obj/item/melee/robotic/baton/arm(src)
 
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal(40000)
 	var/datum/matter_synth/glass = new /datum/matter_synth/glass(40000)
@@ -792,6 +796,11 @@
 	src.modules += new /obj/item/packageWrap/borg(src)
 	src.emag += new /obj/item/kinetic_crusher/machete/dagger(src)
 
+	src.modules += new /obj/item/melee/robotic/baton/slime(src) // Outpost 21 edit - Xenobio to cargo
+	src.modules += new /obj/item/gun/energy/robotic/taser/xeno(src) // Outpost 21 edit - Xenobio to cargo
+	src.modules += new /obj/item/reagent_containers/syringe(src) // Outpost 21 edit - Xenobio to cargo
+	src.modules += new /obj/item/reagent_containers/glass/bucket/cyborg(src) // Outpost 21 edit - Xenobio to cargo
+
 	var/datum/matter_synth/beacon = new /datum/matter_synth/beacon(10000)
 	synths += beacon
 
@@ -819,15 +828,15 @@
 	src.modules += new /obj/item/robotic_multibelt(src)
 	src.modules += new /obj/item/robotic_multibelt(src)
 	src.modules += new /obj/item/robotic_multibelt/botanical(src)
-	src.modules += new /obj/item/surgical/hemostat/cyborg(src) //Synth repair
-	src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src) //NIF repair
-	src.modules += new /obj/item/surgical/circular_saw/cyborg(src) // Synth limb replacement
-	src.modules += new /obj/item/reagent_containers/syringe(src)
-	src.modules += new /obj/item/reagent_containers/glass/beaker/large/borg(src)
+	// src.modules += new /obj/item/surgical/hemostat/cyborg(src) //Synth repair // Outpost 21 edit - Robotics moved to engineering
+	// src.modules += new /obj/item/surgical/surgicaldrill/cyborg(src) //NIF repair // Outpost 21 edit - Robotics moved to engineering
+	// src.modules += new /obj/item/surgical/circular_saw/cyborg(src) // Synth limb replacement // Outpost 21 edit - Robotics moved to engineering
+	// src.modules += new /obj/item/reagent_containers/syringe(src) // Outpost 21 edit - Xenobio to cargo
+	// src.modules += new /obj/item/reagent_containers/glass/beaker/large/borg(src) // Outpost 21 edit - Xenobio to cargo
 	src.modules += new /obj/item/storage/part_replacer(src)
 	src.modules += new /obj/item/shockpaddles/robot/jumper(src)
-	src.modules += new /obj/item/melee/robotic/baton/slime(src)
-	src.modules += new /obj/item/gun/energy/robotic/taser/xeno(src)
+	// src.modules += new /obj/item/melee/robotic/baton/slime(src) // Outpost 21 edit - Xenobio to cargo
+	// src.modules += new /obj/item/gun/energy/robotic/taser/xeno(src) // Outpost 21 edit - Xenobio to cargo
 	src.modules += new /obj/item/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/pickaxe/excavationdrill(src)
 	// Anomaly handling
@@ -904,6 +913,9 @@
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
 	src.modules += new /obj/item/t_scanner(src)
+	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/assembly/signaler(src)
+	src.modules += new /obj/item/gripper/engineering(src)
 	src.modules += new /obj/item/multitool/cyborg(src)
 	src.modules += new /obj/item/lightreplacer(src)
 	src.modules += new /obj/item/gripper/drone(src)

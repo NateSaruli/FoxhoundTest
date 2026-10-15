@@ -5,7 +5,7 @@
 
 /datum/category_item/catalogue/technology/turret
 	name = "Turrets"
-	desc = "This imtimidating machine is essentially an automated gun. It is able to \
+	desc = "This intimidating machine is essentially an automated gun. It is able to \
 	scan its immediate environment, and if it determines that a threat is nearby, it will \
 	open up, aim the barrel of the weapon at the threat, and engage it until the threat \
 	goes away, it dies (if using a lethal gun), or the turret is destroyed. This has made them \
@@ -38,6 +38,7 @@
 
 /obj/machinery/porta_turret
 	name = "turret"
+	desc = "A large, emplaced turret. You'd better not stay still in front of it."
 	catalogue_data = list(/datum/category_item/catalogue/technology/turret)
 	icon = 'icons/obj/turrets.dmi'
 	icon_state = "turret_cover_normal"
@@ -699,6 +700,12 @@
 		popDown()
 		return
 
+	// Outpost 21 edit begin - AI controlled turrets
+	if(ai_currently_inhabited)
+		popUp()
+		return
+	// Outpost 21 edit end
+
 	if(!enabled)
 		//if the turret is off, make it pop down
 		popDown()
@@ -919,7 +926,7 @@
 /obj/machinery/porta_turret/proc/shootAt(mob/living/target)
 	//any emagged turrets will shoot extremely fast! This not only is deadly, but drains a lot power!
 	var/current_delay = shot_delay
-	if(emagged || attacked)	//prevents rapid-fire shooting, unless it's been emagged
+	if(emagged || attacked || ai_currently_inhabited)	//prevents rapid-fire shooting, unless it's been emagged // Outpost 21 edit - AI controlled turrets
 		current_delay = min(shot_delay,TURRET_EMAG_FIRERATE) // Emag fire rate
 
 	// Can't fire until our reload finishes, AND we have fully raised up.

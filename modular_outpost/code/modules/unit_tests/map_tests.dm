@@ -109,6 +109,16 @@
 		/area/muriki/lowerevac,
 		/area/offworld/orbital/phoronics/burn_chamber,
 		/area/rnd/xenobiology/lost,
+		/area/rnd/xenobiology/xenobioh,
+		/area/rnd/xenobiology/xenobiohstore,
+		/area/rnd/xenobiology/burn,
+		/area/rnd/research/anomaly,
+		/area/rnd/research/exp_prep,
+		/area/rnd/research/medical,
+		/area/offworld/orbital/xenoarcheology/isolation_a,
+		/area/offworld/orbital/xenoarcheology/isolation_b,
+		/area/offworld/orbital/xenoarcheology/isolation_c,
+		/area/security/mechent,
 		)
 
 	var/list/forced_hallway = list(
@@ -140,7 +150,6 @@
 		/area/engineering/refinery/tugstorage,
 		/area/rnd/stairwell,
 		/area/quartermaster/foyer,
-		/area/muriki/research/isolation_hall,
 		/area/medical/stairwell,
 		/area/medical/patient_wing,
 		/area/rnd/research/phoronics,
@@ -173,6 +182,7 @@
 		/area/muriki/crew/bunker_deep/main,
 		/area/muriki/crew/bunker_deep/comm,
 		/area/muriki/crew/bunker_deep/med,
+		/area/bridge/holdout_armory,
 	)
 
 	var/list/does_not_have_disposals = list(
@@ -219,11 +229,9 @@
 		/area/medical/voxlab/chem,
 		/area/medical/voxlab/surgery,
 		/area/medical/voxlab/recov,
-		/area/muriki/research/isolation_hall,
 		/area/rnd/research/xenobio_storage,
 		/area/rnd/xenobiology/burn,
 		/area/server,
-		/area/rnd/xenobiology/xenobiohstore,
 		/area/comms,
 		/area/tcomfoyer,
 		/area/tcommsat/computer,
@@ -246,7 +254,6 @@
 		/area/teleporter/engineering,
 		/area/security/nuke_storage,
 		/area/muriki/tramstation/waste,
-		/area/security/mechent,
 		/area/engineering/engine_smes,
 		/area/engineering/gravgen,
 		/area/quartermaster/warehouse,
@@ -289,7 +296,6 @@
 		/area/rnd/research/phoronics,
 		/area/engineering/refinery/tugstorage,
 		/area/medical/medbay4,
-		/area/muriki/research/isolation_hall,
 		/area/rnd/hallway/hazard,
 		/area/muriki/crewstairwell,
 		/area/medical/medbay,
@@ -525,8 +531,12 @@
 
 	for(var/obj/machinery/camera/network/research/C in world)
 		set background=1
-		if(!validate_camera(C, "SCI", used_cams))
-			failed = TRUE
+		if(istype(C, /obj/machinery/camera/network/research/xenobio))
+			if(!validate_camera(C, "CRG", used_cams))
+				failed = TRUE
+		else
+			if(!validate_camera(C, "SCI", used_cams))
+				failed = TRUE
 
 	for(var/obj/machinery/camera/network/research_outpost/C in world)
 		set background=1
